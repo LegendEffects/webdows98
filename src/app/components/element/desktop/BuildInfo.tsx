@@ -3,8 +3,8 @@ import React from 'react';
 
 const BuildInfoContainer = styled.div`
   position: absolute;
-  bottom: 15px;
-  right: 15px;
+  bottom: 10px;
+  right: 10px;
 
   font-weight: bold;
   font-size: 14px;

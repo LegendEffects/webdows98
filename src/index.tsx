@@ -1,16 +1,21 @@
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 import 'normalize.css/normalize.css';
 import 'xp.css/themes/98/_variables.scss';
 import 'xp.css/dist/98.css';
 import './index.css';
 
-import React from 'react';
-import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import Desktop from './stage/desktop/Desktop';
+import { SystemProvider } from './app/contexts/SystemContext';
+import Desktop from './app/components/screen/Desktop';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Desktop />
+    <SystemProvider>
+      <Desktop />
+    </SystemProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
