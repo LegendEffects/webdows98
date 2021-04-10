@@ -31,41 +31,41 @@ function modifyWindow(state: ISystemState, action: SystemAction & {uuid: string}
   }
 }
 
+function modifyWindows(state: ISystemState, modifier: (windows: IWindow[]) => IWindow[]) {
+  return {
+    ...state,
+    windows: modifier([...state.windows])
+  }
+}
+
 function reorderWindows(state: ISystemState, topUuid: string): ISystemState {
   const windows = [...state.windows];
 
-  windows.map((window) => {
-    window.frame.z = Math.max(1, window.frame.z - 1);
-    return window;
-  });
+  const withoutTop = windows.filter((w) => w.uuid !== topUuid);
+  const topWindow = windows.find((w) => w.uuid === topUuid);
 
-  const topKey = windows.findIndex(window => window.uuid === topUuid);
-  windows[topKey].frame.z = windows.length;
+  if(topWindow) {
+    withoutTop.push(topWindow)
+  }
 
   return {
     ...state,
-    windows
+    windows: withoutTop
   }
 }
 
 function systemReducer(state: ISystemState, action: SystemAction): ISystemState {
-  let windows, key;
-
   switch(action.type) {
     case 'createWindow':
-      windows = [...state.windows];
-
-      const newWindow = {
-        ...action.window,
-        uuid: uuidv4()
-      };
-      newWindow.frame.z = state.windows.length;
-      windows.push(newWindow);
-
-      return {
-        ...state,
-        windows
-      };
+      return modifyWindows(state, (windows) => {
+        const newWindow = {
+          ...action.window,
+          uuid: uuidv4()
+        };
+  
+        windows.push(newWindow);
+        return windows;
+      })
     case 'setVisibility':
       return {
         ...modifyWindow(state, action, (window) => {

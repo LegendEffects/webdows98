@@ -18,8 +18,10 @@ const WindowArea: React.FC = () => {
 
   return (
     <WindowContainer>
-      {system.windows.filter(window => window.visible === true).map((window) => (
-        <Window key={window.uuid} window={window} />
+      {system.windows.filter(window => window.visible === true).map((window, i) => (
+        <div key={window.uuid} style={{zIndex: i + 1}}>
+          <Window window={window} />
+        </div>
       ))}
 
       <BuildInfo />

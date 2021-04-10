@@ -30,8 +30,7 @@ const WindowFrame: React.FC = () => {
         style={{
           width: frame.width,
           height: frame.height,
-          zIndex: frame.z,
-          transform: `translate(${frame.x}px, ${frame.y}px)`
+          transform: `translate3d(${frame.x}px, ${frame.y}px, 0)`
         }}
         onMouseDown={() => {
           dispatch({
@@ -47,7 +46,7 @@ const WindowFrame: React.FC = () => {
           style={{
             width: frame.width,
             height: frame.height,
-            transform: `translate(${frame.x + mousePos.x - frame.dragDetails?.mouse.x}px, ${frame.y + mousePos.y - frame.dragDetails?.mouse.y}px)`
+            transform: `translate3d(${frame.x + mousePos.x - frame.dragDetails?.mouse.x}px, ${frame.y + mousePos.y - frame.dragDetails?.mouse.y}px, 0)`
           }}
 
           onMouseUp={() => {

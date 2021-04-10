@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
-import { useEffect } from "react";
-import { useSystem } from "../../../../contexts/SystemContext";
 import NotificationArea from "./NotificationArea";
-
-const taskbarHeight = '22px';
+import { TASKBAR_HEIGHT } from "../../../../constants/Taskbar";
+import { useSystem } from "../../../../contexts/SystemContext";
+import StartButton from "./start/StartButton";
 
 const TaskbarContainer = styled.div`
   display: flex;
@@ -22,7 +21,7 @@ export const Panel = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: ${taskbarHeight};
+  height: ${TASKBAR_HEIGHT}px;
 `;
 
 export const InsetPanel = styled(Panel)`
@@ -34,7 +33,7 @@ export const InsetPanel = styled(Panel)`
 export const PanelSeparator = styled.div`
   margin-left: 2px;
   margin-right: 2px;
-  height: ${taskbarHeight};
+  height: ${TASKBAR_HEIGHT}px;
   width: 1px;
   background-color: var(--button-highlight);
   border-left: var(--border-width) solid var(--button-shadow);
@@ -44,24 +43,16 @@ export const PanelSeparator = styled.div`
 
 export const TaskbarGrip = styled.div`
   width: 3px;
-  height: 18px;
+  height: ${TASKBAR_HEIGHT - 4}px;
   background: var(--surface);
 
   box-shadow: inset -1px -1px var(--button-shadow), inset 1px 1px var(--button-highlight);
   margin: 2px;
 `
 
-export const StartButton = styled.button`
-  background-image: url('/assets/icons/start_button.png');
-  background-repeat: no-repeat;
-  background-position: center;
-
-  min-height: initial;
-  min-width: initial;
-
-  width: 54px;
-  height: ${taskbarHeight};
-`;
+export const QuickLaunchItem = styled.img`
+  margin-left: 7px;
+`
 
 export const WindowButton = styled.button`
   width: 160px;
@@ -70,7 +61,14 @@ export const WindowButton = styled.button`
 
   display: flex;
   align-items: center;
-  text-overflow: ellipsis;
+  
+  span {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+  }
 
   margin-right: 3px;
 
@@ -94,8 +92,10 @@ const Taskbar: React.FC = () => {
         <PanelSeparator />
       </Panel>
       <Panel>
-        <TaskbarGrip />
-        <PanelSeparator />
+        <TaskbarGrip style={{marginRight: 0}} />
+
+        <QuickLaunchItem src="/assets/icons/internet_explorer-16.png" alt="Internet Explorer Icon" />
+        <PanelSeparator style={{marginLeft: '7px'}} />
       </Panel>
 
       <Panel style={{width: '100%', overflow: 'hidden'}}>
@@ -122,7 +122,7 @@ const Taskbar: React.FC = () => {
               }}
               >
                 <img src={`/assets/icons/${window.frame.icon}-16.png`} alt={`${window.frame.title} Icon`} />
-                {window.frame.title}
+                <span>{window.frame.title}</span>
             </WindowButton>
           )
         })}

@@ -23,6 +23,9 @@ html, body, #root {
   line-height: 1.3em;
   font-family: 'MS Sans Pixel 13', 'Times New Roman', Times, serif;
   -webkit-font-smoothing: none;
+
+  overflow: hidden;
+  -webkit-font-smoothing: none;
 }
 
 body {

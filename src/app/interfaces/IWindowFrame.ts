@@ -9,7 +9,6 @@ export default interface IWindowFrame {
   
   x: number;
   y: number;
-  z: number;
   
   dragging: boolean;
   dragDetails: null | IDragDetails;
