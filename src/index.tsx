@@ -1,12 +1,16 @@
+import 'normalize.css/normalize.css';
+import 'xp.css/themes/98/_variables.scss';
+import 'xp.css/dist/98.css';
+import './index.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Desktop from './stage/desktop/Desktop';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Desktop />
   </React.StrictMode>,
   document.getElementById('root')
 );
