@@ -2,19 +2,18 @@ import React from "react";
 import IWindow from "../interfaces/IWindow";
 import ISystemState from "../interfaces/state/ISystemState";
 import { v4 as uuidv4 } from "uuid";
-import IDragDetails from "../interfaces/IDragDetails";
+import ILocation from "../interfaces/ILocation";
+import DragType from "../interfaces/DragType";
 
 type SystemAction = 
-  | { type: 'createWindow',  window: Omit<IWindow, 'uuid'>               }
-  | { type: 'toggleDocked',  uuid: string                                }
-  | { type: 'setVisibility', uuid: string, value: boolean                }
-  | { type: 'setLocation',   uuid: string, x: number, y: number          }
-  | { type: 'setSize',       uuid: string, width: number, height: number }
-  | { type: 'setFocused',    uuid: string | undefined                    }
-  | { type: 'stopDragging',  uuid: string                                }
-  | { type: 'startDragging', uuid: string, details: IDragDetails         }
-  | { type: 'startResize',   uuid: string, details: IDragDetails         }
-  | { type: 'stopResize',    uuid: string,                               }
+  | { type: 'createWindow',  window: Omit<IWindow, 'uuid'>                     }
+  | { type: 'toggleDocked',  uuid:  string                                     }
+  | { type: 'setVisibility', uuid:  string, value: boolean                     }
+  | { type: 'setLocation',   uuid:  string, x: number, y: number               }
+  | { type: 'setSize',       uuid:  string, width: number, height: number      }
+  | { type: 'setFocused',    uuid?: string                                     }
+  | { type: 'startDrag',     uuid?: string, action: DragType, mouse: ILocation }
+  | { type: 'stopDrag'                                                         }
   ;
 
 const SystemContext = React.createContext<[
@@ -99,30 +98,23 @@ function systemReducer(state: ISystemState, action: SystemAction): ISystemState 
         ...(action.uuid ? reorderWindows(state, action.uuid) : state),
         focusedWindow: action.uuid
       };
-    case 'startDragging':
-      return reorderWindows(modifyWindow(state, action, (window) => {
-        window.frame.dragging = true;
-        window.frame.dragDetails = action.details;
-        return window;
-      }), action.uuid);
-    case 'stopDragging':
-      return modifyWindow(state, action, (window) => {
-        window.frame.dragging = false;
-        window.frame.dragDetails = null;
-        return window;
-      });
-    case 'startResize':
-      return modifyWindow(state, action, (window) => {
-        window.frame.resizing = true;
-        window.frame.dragDetails = action.details;
-        return window;
-      });
-    case 'stopResize':
-      return modifyWindow(state, action, (window) => {
-        window.frame.resizing = false;
-        window.frame.dragDetails = null;
-        return window;
-      });
+    case 'startDrag':
+      const target = (!action.uuid) ? undefined : state.windows.find((w) => w.uuid === action.uuid);
+
+      return {
+        ...state,
+        dragging: {
+          type:       action.action,
+          mousePos:   action.mouse,
+          targetUuid: action.uuid,
+          target
+        }
+      };
+    case 'stopDrag':
+      return {
+        ...state,
+        dragging: undefined
+      }
     default:
       return state;
   }

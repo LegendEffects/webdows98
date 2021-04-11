@@ -20,34 +20,13 @@ const WindowTitleBar = () => {
   const { uuid, frame } = useWindow();
 
   return (
-    <TitleBar 
-      className="title-bar"
-      onMouseDown={(e) => {
-        if((e.target as HTMLElement).parentElement?.classList.contains('no-drag')) {
-          return;
-        }
-        dispatch({
-          type: 'startDragging',
-          uuid,
-          details: {
-            mouse: {
-              x: e.clientX,
-              y: e.clientY
-            }
-          }
-        });
-        dispatch({
-          type: 'setFocused',
-          uuid
-        });
-      }}
-      >
-        <TitleBarTest className="title-bar-text">
-          <img src={`/assets/icons/${frame.icon}-16.png`} alt={`${frame.title} Icon`} />
+    <TitleBar className="title-bar drag-point">
+        <TitleBarTest className="title-bar-text drag-point">
+          <img src={`/assets/icons/${frame.icon}-16.png`} alt={`${frame.title} Icon`} className="drag-point" />
           {frame.title}
         </TitleBarTest>
 
-        <div className="title-bar-controls no-drag">
+        <div className="title-bar-controls">
           {frame.actions.minimize && (
             <button 
               aria-label="Minimize"
