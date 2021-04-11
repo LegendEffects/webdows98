@@ -8,7 +8,16 @@ const WindowContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+
   will-change: contents;
+  
+  display: flex;
+  flex-direction: column;
+
+  &.docked {
+    padding: 0;
+    box-shadow: none;
+  }
 `;
 
 const ResizeHandle = styled.div`
@@ -20,17 +29,23 @@ const ResizeHandle = styled.div`
   height: 10px;
 `;
 
-const WindowFrame: React.FC = () => {
+export interface WindowFrameProps {
+  zIndex: number;
+}
+
+const WindowFrame: React.FC<WindowFrameProps> = ({ zIndex }) => {
   const [ , dispatch ] = useSystem();
   const { uuid, frame } = useWindow();
 
   return (
     <WindowContainer 
-      className="window"
+      data-uuid={uuid}
+      className={`window ${frame.docked && 'docked'}`}
       style={{
-        width: frame.width,
-        height: frame.height,
-        transform: `translate3d(${frame.x}px, ${frame.y}px, 0)`
+        width: frame.docked ? '100%' : frame.width,
+        height: frame.docked ? '100%' : frame.height,
+        transform: frame.docked ? undefined : `translate3d(${frame.x}px, ${frame.y}px, 0)`,
+        zIndex
       }}
       onMouseDown={() => {
         dispatch({
@@ -40,6 +55,8 @@ const WindowFrame: React.FC = () => {
       }}
       >
         <WindowTitleBar />
+
+        <frame.component />
 
         {frame.resizable && (
           <ResizeHandle className="resize-point cursor-nwse-resize" />

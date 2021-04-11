@@ -16,6 +16,7 @@ export default interface IWindowFrame {
 
   resizable: boolean;
   resizing: boolean;
+  component: React.FC;
 
   actions: {
     minimize: boolean

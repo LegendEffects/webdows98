@@ -1,16 +1,16 @@
 import React from "react";
 import { WindowProvider } from "../../../../contexts/WindowContext";
 import IWindow from "../../../../interfaces/IWindow";
-import WindowFrame from "./WindowFrame";
+import WindowFrame, { WindowFrameProps } from "./WindowFrame";
 
-export interface WindowFrameProps {
+export interface WindowProps extends WindowFrameProps  {
   window: IWindow;
 }
 
-const Window: React.FC<WindowFrameProps> = ({ window }) => {
+const Window: React.FC<WindowProps> = ({ window, ...props }) => {
   return (
     <WindowProvider window={window}>
-      <WindowFrame />
+      <WindowFrame {...props} />
     </WindowProvider>
   );
 }

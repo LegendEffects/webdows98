@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { useSystem } from "../../contexts/SystemContext";
+import NotepadApp from "../element/application/notepad/NotepadApp";
 import Taskbar from "../element/desktop/taskbar/Taskbar";
 import WindowArea from "../element/desktop/WindowArea";
 
@@ -31,6 +32,7 @@ const Desktop: React.FC = () => {
         dragDetails: null,
         resizable: true,
         resizing: false,
+        component: NotepadApp,
         actions: {
           minimize: true,
           restore: true,
@@ -40,10 +42,16 @@ const Desktop: React.FC = () => {
       visible: true
     };
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 3; i++) {
       dispatch({
         type: 'createWindow',
-        window: JSON.parse(JSON.stringify(testWindow))
+        window: {
+          ...JSON.parse(JSON.stringify(testWindow)),
+          frame: {
+            ...JSON.parse(JSON.stringify(testWindow.frame)),
+            component: NotepadApp
+          }
+        }
       });
     }
     
