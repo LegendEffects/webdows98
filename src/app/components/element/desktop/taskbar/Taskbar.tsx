@@ -4,6 +4,8 @@ import { TASKBAR_HEIGHT } from "../../../../constants/Taskbar";
 import { useSystem } from "../../../../contexts/SystemContext";
 import StartButton from "./start/StartButton";
 import QuickLaunchItem from "./QuickLaunchItem";
+import React from "react";
+import IWindow from "../../../../interfaces/IWindow";
 
 const TaskbarContainer = styled.div`
   display: flex;
@@ -82,6 +84,32 @@ export const WindowButton = styled.button`
 
 const Taskbar: React.FC = () => {
   const [ system, dispatch ] = useSystem();
+  const [ windows, setWindows ] = React.useState<IWindow[]>([]);
+
+  /**
+   * We need to maintain the state for the taskbar individually as the system
+   * state for windows is used as a stack, therefore the taskbar would
+   * reflect that with the focused window always being on the end of the
+   * taskbar.
+   */
+  React.useEffect(() => {
+    setWindows((windows) => {
+      // Remove removed windows
+      const result = windows.filter((window) => {
+        return system.windows.find((w) => w.uuid === window.uuid) !== undefined;
+      });
+  
+      // Add new windows to the current state
+      system.windows.forEach((window) => {
+        const find = result.find((w) => w.uuid === window.uuid);
+        if(!find) {
+          result.push(window);
+        }
+      });
+      
+      return result;
+    })
+  }, [ system.windows ]);
 
   return (
     <TaskbarContainer>
@@ -98,7 +126,7 @@ const Taskbar: React.FC = () => {
 
       <Panel style={{width: '100%', overflow: 'hidden'}}>
         <TaskbarGrip style={{marginRight: '4px'}} />
-        {system.windows.map((window) => {
+        {windows.map((window) => {
           return (
             <WindowButton
               key={window.uuid} 
