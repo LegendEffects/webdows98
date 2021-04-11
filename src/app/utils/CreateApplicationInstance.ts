@@ -1,11 +1,5 @@
-import React from "react";
-import IApplicationDetails from "../interfaces/IApplicationDetails";
+import IBaseApplication from "../interfaces/IBaseApplication";
 import IWindow from "../interfaces/IWindow";
-
-interface IBaseApplication {
-  details: IApplicationDetails;
-  component: React.FC;
-}
 
 const defaultFrame= {
   x: 0,

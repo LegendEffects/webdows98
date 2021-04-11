@@ -4,7 +4,7 @@ import WindowMenuBar from "../../desktop/window/menu/WindowMenuBar";
 import WindowScrollResize from "../../desktop/window/WindowScrollResize";
 import WindowMenuAccessKeyDropdown from "../../desktop/window/menu/WindowMenuAccessKeyDropdown";
 import DropdownItem from "../../global/dropdown/DropdownItem";
-import WebApplication from "../WebApplication";
+import IBaseApplication from "../../../../interfaces/IBaseApplication";
 
 const TextArea = styled.textarea`
   width: 100%;
@@ -13,15 +13,15 @@ const TextArea = styled.textarea`
   overflow: scroll;
 `
 
-class NotepadApp extends WebApplication {
-  static details = {
-    title: 'Untitled - Notepad',
-    icon:  'icon-notepad',
-    width: 300,
+const NotepadApp: IBaseApplication = {
+  details: {
+    title:  'Untitled - Notepad',
+    icon:   'icon-notepad',
+    width:  300,
     height: 200
-  }
+  },
 
-  static component = () => {
+  component: () => {
     return (
       <>
         <WindowMenuBar>
@@ -37,16 +37,11 @@ class NotepadApp extends WebApplication {
             </DropdownItem>
           </WindowMenuAccessKeyDropdown>
   
-          <WindowMenuAccessKeyDropdown title="Edit">
-            
-          </WindowMenuAccessKeyDropdown>
-          <WindowMenuAccessKeyDropdown title="Format">
-            
-          </WindowMenuAccessKeyDropdown>
-          <WindowMenuAccessKeyDropdown title="Help">
-            
-          </WindowMenuAccessKeyDropdown>
+          <WindowMenuAccessKeyDropdown title="Edit" /> 
+          <WindowMenuAccessKeyDropdown title="Format" />
+          <WindowMenuAccessKeyDropdown title="Help" />
         </WindowMenuBar>
+        
         <WindowBody>
           <TextArea wrap="off" />
           <WindowScrollResize className="resize-point cursor-nwse-resize" />

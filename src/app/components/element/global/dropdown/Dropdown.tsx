@@ -21,14 +21,12 @@ const DropdownInner = styled.div`
   padding: 2px;
 `
 
-const Dropdown: React.FC = ({ children }) => {
-  return (
-    <DropdownContainer>
-      <DropdownInner>
-        {children}
-      </DropdownInner>
-    </DropdownContainer>
-  )
-}
+const Dropdown = React.forwardRef<HTMLDivElement, {children: React.ReactNode}>(({ children }, ref) => (
+  <DropdownContainer className="dropdown" ref={ref}>
+    <DropdownInner>
+      {children}
+    </DropdownInner>
+  </DropdownContainer>
+));
 
 export default Dropdown;
