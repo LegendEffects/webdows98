@@ -94,6 +94,12 @@ const WindowArea: React.FC = () => {
           }
 
           dispatch({
+            type: 'setDocked',
+            uuid: container.uuid,
+            value: false
+          });
+
+          dispatch({
             type: 'startDrag',
             uuid: container.uuid,
             action: type,

@@ -8,6 +8,7 @@ import DragType from "../interfaces/DragType";
 type SystemAction = 
   | { type: 'createWindow',  window: Omit<IWindow, 'uuid'>                     }
   | { type: 'toggleDocked',  uuid:  string                                     }
+  | { type: 'setDocked',     uuid:  string, value: boolean                     }
   | { type: 'setVisibility', uuid:  string, value: boolean                     }
   | { type: 'setLocation',   uuid:  string, x: number, y: number               }
   | { type: 'setSize',       uuid:  string, width: number, height: number      }
@@ -79,6 +80,11 @@ function systemReducer(state: ISystemState, action: SystemAction): ISystemState 
     case 'toggleDocked':
       return modifyWindow(state, action, (window) => {
         window.frame.docked = !window.frame.docked;
+        return window;
+      });
+    case 'setDocked':
+      return modifyWindow(state, action, (window) => {
+        window.frame.docked = action.value;
         return window;
       });
     case 'setLocation':

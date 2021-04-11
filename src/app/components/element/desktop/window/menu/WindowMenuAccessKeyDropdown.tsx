@@ -1,15 +1,23 @@
+import styled from "@emotion/styled";
 import React from "react"
+import Dropdown from "../../../global/dropdown/Dropdown";
 import WindowMenuAccessKey from "./WindowMenuAccessKey";
 
 export interface WindowMenuAccessKeyDropdownProps {
   title: string;
 }
 
-const WindowMenuAccessKeyDropdown: React.FC<WindowMenuAccessKeyDropdownProps> = ({ title }) => {
+const WindowMenuContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+`
+
+const WindowMenuAccessKeyDropdown: React.FC<WindowMenuAccessKeyDropdownProps> = ({ title, children }) => {
   const [ isOpen, setIsOpen ] = React.useState(false);
 
   return (
-    <>
+    <WindowMenuContainer>
       <WindowMenuAccessKey 
         className={isOpen ? 'active' : undefined}
         onClick={() => {
@@ -18,7 +26,13 @@ const WindowMenuAccessKeyDropdown: React.FC<WindowMenuAccessKeyDropdownProps> = 
         >
           {title}
       </WindowMenuAccessKey>
-    </>
+
+      {isOpen && (
+        <Dropdown>
+          {children}
+        </Dropdown>
+      )}
+    </WindowMenuContainer>
   )
 }
 
