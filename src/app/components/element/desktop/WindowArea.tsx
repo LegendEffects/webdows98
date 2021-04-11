@@ -62,12 +62,12 @@ const WindowArea: React.FC = () => {
           height: system.dragging.target.frame.height + (mousePos.y - system.dragging.mousePos.y)
         })
         break;
-      
     }
   }
 
   return (
     <WindowContainer
+      className="desktop"
       onMouseDown={(e) => {
         const el = e.target as HTMLElement;
         let type: DragType | undefined = undefined;
@@ -76,6 +76,15 @@ const WindowArea: React.FC = () => {
           type = DragType.MOVE;
         } else if(el.classList.contains('resize-point')) {
           type = DragType.RESIZE;
+        } else if(el.classList.contains('desktop')){
+          dispatch({
+            type: 'startDrag',
+            action: DragType.HIGHLIGHT,
+            mouse: mousePos
+          });
+          e.preventDefault();
+          e.stopPropagation();
+          return;
         }
 
         if(type !== undefined) {
@@ -90,6 +99,7 @@ const WindowArea: React.FC = () => {
             action: type,
             mouse: mousePos
           });
+          e.preventDefault();
           e.stopPropagation();
           return;
         }

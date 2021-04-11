@@ -23,7 +23,7 @@ const StartBtn = styled.button`
 `;
 
 const StartButton: React.FC = () => {
-  const [ isOpen, setIsOpen ] = React.useState(true);
+  const [ isOpen, setIsOpen ] = React.useState(false);
 
   return (
     <StartBtnContainer>

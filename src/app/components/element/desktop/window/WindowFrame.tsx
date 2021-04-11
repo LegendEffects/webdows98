@@ -8,7 +8,7 @@ const WindowContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  will-change: transform;
+  will-change: contents;
 `;
 
 const ResizeHandle = styled.div`

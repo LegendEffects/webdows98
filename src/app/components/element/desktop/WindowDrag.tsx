@@ -12,6 +12,7 @@ const WindowDragOutline = styled.div`
   top: 0;
   left: 0;
   will-change: transform;
+  will-change: contents;
 `;
 
 const WindowDrag: React.FC = () => {
@@ -47,6 +48,18 @@ const WindowDrag: React.FC = () => {
         }}
       />
     );
+  }
+
+  if(dragging.type === DragType.HIGHLIGHT) {
+    return (
+      <WindowDragOutline
+        style={{
+          transform: `translate3d(${dragging.mousePos.x - Math.abs(Math.min(0, mousePos.x - dragging.mousePos.x))}px, ${dragging.mousePos.y - Math.abs(Math.min(0, mousePos.y - dragging.mousePos.y))}px, 0)`,
+          width: Math.abs(mousePos.x - dragging.mousePos.x),
+          height: Math.abs(mousePos.y - dragging.mousePos.y)
+        }}
+      />
+    )
   }
 
   return (<> </>);
