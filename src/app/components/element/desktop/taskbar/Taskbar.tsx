@@ -93,6 +93,7 @@ const Taskbar: React.FC = () => {
    * taskbar.
    */
   React.useEffect(() => {
+    // There's likely a more efficient way of doing this.
     setWindows((windows) => {
       // Remove removed windows
       const result = windows.filter((window) => {

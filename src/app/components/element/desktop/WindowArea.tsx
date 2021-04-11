@@ -106,10 +106,12 @@ const WindowArea: React.FC = () => {
       }}
 
       onMouseUp={() => {
-        handleDragStop();
-        dispatch({
-          type: 'stopDrag'
-        });
+        if(system.dragging) {
+          handleDragStop();
+          dispatch({
+            type: 'stopDrag'
+          });
+        }
       }}
       >
         <WindowDrag />

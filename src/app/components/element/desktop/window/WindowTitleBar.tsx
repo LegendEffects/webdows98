@@ -10,9 +10,13 @@ const TitleBarTest = styled.div`
   display: flex;
   align-items: center;
 
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
   .icon {
     margin-right: 3px;
   }
+
 `;
 
 const WindowTitleBar = () => {
@@ -40,7 +44,6 @@ const WindowTitleBar = () => {
             <button
               aria-label={frame.docked ? 'Restore' : 'Maximize'} 
               onClick={() => {
-                console.log('a')
                 dispatch({
                   type: 'toggleDocked',
                   uuid
