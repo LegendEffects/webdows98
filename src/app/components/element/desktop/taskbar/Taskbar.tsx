@@ -3,6 +3,7 @@ import NotificationArea from "./NotificationArea";
 import { TASKBAR_HEIGHT } from "../../../../constants/Taskbar";
 import { useSystem } from "../../../../contexts/SystemContext";
 import StartButton from "./start/StartButton";
+import QuickLaunchItem from "./QuickLaunchItem";
 
 const TaskbarContainer = styled.div`
   display: flex;
@@ -50,10 +51,6 @@ export const TaskbarGrip = styled.div`
   margin: 2px;
 `
 
-export const QuickLaunchItem = styled.img`
-  margin-left: 7px;
-`
-
 export const WindowButton = styled.button`
   width: 160px;
   min-width: 50px;
@@ -73,7 +70,7 @@ export const WindowButton = styled.button`
 
   margin-right: 3px;
 
-  img {
+  .icon {
     margin-right: 3px;
   }
 
@@ -95,7 +92,7 @@ const Taskbar: React.FC = () => {
       <Panel>
         <TaskbarGrip style={{marginRight: 0}} />
 
-        <QuickLaunchItem src="/assets/icons/internet_explorer-16.png" alt="Internet Explorer Icon" />
+        <QuickLaunchItem icon="icon-msie1" />
         <PanelSeparator style={{marginLeft: '7px'}} />
       </Panel>
 
@@ -122,7 +119,7 @@ const Taskbar: React.FC = () => {
                 });
               }}
               >
-                <img src={`/assets/icons/${window.frame.icon}-16.png`} alt={`${window.frame.title} Icon`} />
+                <div className={`icon ${window.frame.icon}_16`} />
                 <span>{window.frame.title}</span>
             </WindowButton>
           )

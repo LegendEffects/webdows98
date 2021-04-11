@@ -91,7 +91,7 @@ const StartMenuItem = styled.div`
   height: 35px;
   padding-left: 5px;
 
-  img {
+  .icon {
     margin-right: 3px;
   }
   
@@ -116,11 +116,11 @@ const StartMenu: React.FC<StartMenuProps> = () => {
           <StartMenuSeparator />
 
           <StartMenuItem>
-            <img src="/assets/icons/key_win-32.png" alt="Log Off" />
+            <div className="icon icon-key_win_32" />
             Log Off Anon...
           </StartMenuItem>
           <StartMenuItem>
-            <img src="/assets/icons/shut_down-32.png" alt="Shut Down" />
+            <div className="icon icon-shut_down_normal_32" />
             Shut Down...
           </StartMenuItem>
 

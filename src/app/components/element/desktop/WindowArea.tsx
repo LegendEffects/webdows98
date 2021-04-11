@@ -112,13 +112,14 @@ const WindowArea: React.FC = () => {
         });
       }}
       >
+        <WindowDrag />
+
         {system.windows.filter(window => window.visible === true).map((window, i) => (
-          <div key={window.uuid} data-uuid={window.uuid} style={{zIndex: i + 1}}>
+          <div key={window.uuid} data-uuid={window.uuid} style={{position: 'relative', zIndex: i + 5}}>
             <Window window={window} />
           </div>
         ))}
 
-        <WindowDrag />
         <BuildInfo />
     </WindowContainer>
   )

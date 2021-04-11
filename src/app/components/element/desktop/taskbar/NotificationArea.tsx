@@ -4,7 +4,7 @@ import { InsetPanel } from "./Taskbar";
 const NotificationArea: React.FC = () => {
   return (
     <InsetPanel style={{marginLeft: 'auto'}}>
-      <img src="/assets/icons/loudspeaker_rays-16.png" alt="Volume" />
+      <div className="icon-loudspeaker_rays_16" />
       <div style={{marginLeft: '6px', marginRight: '6px'}}>
         <TaskbarClock />
       </div>

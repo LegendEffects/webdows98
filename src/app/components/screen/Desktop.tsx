@@ -21,7 +21,7 @@ const Desktop: React.FC = () => {
     const testWindow = {
       frame: {
         title: "Test Window",
-        icon: "calculator",
+        icon: "icon-calculator",
         width: 300,
         height: 200,
         x: 0,

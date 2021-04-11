@@ -56,7 +56,8 @@ const WindowDrag: React.FC = () => {
         style={{
           transform: `translate3d(${dragging.mousePos.x - Math.abs(Math.min(0, mousePos.x - dragging.mousePos.x))}px, ${dragging.mousePos.y - Math.abs(Math.min(0, mousePos.y - dragging.mousePos.y))}px, 0)`,
           width: Math.abs(mousePos.x - dragging.mousePos.x),
-          height: Math.abs(mousePos.y - dragging.mousePos.y)
+          height: Math.abs(mousePos.y - dragging.mousePos.y),
+          zIndex: 1
         }}
       />
     )

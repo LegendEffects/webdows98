@@ -10,7 +10,7 @@ const TitleBarTest = styled.div`
   display: flex;
   align-items: center;
 
-  img {
+  .icon {
     margin-right: 3px;
   }
 `;
@@ -22,7 +22,7 @@ const WindowTitleBar = () => {
   return (
     <TitleBar className="title-bar drag-point">
         <TitleBarTest className="title-bar-text drag-point">
-          <img src={`/assets/icons/${frame.icon}-16.png`} alt={`${frame.title} Icon`} className="drag-point" />
+          <div className={`drag-point icon ${frame.icon}_16`} />
           {frame.title}
         </TitleBarTest>
 
