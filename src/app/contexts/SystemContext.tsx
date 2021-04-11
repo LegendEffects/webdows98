@@ -6,12 +6,15 @@ import IDragDetails from "../interfaces/IDragDetails";
 
 type SystemAction = 
   | { type: 'createWindow',  window: Omit<IWindow, 'uuid'>               }
+  | { type: 'toggleDocked',  uuid: string                                }
   | { type: 'setVisibility', uuid: string, value: boolean                }
   | { type: 'setLocation',   uuid: string, x: number, y: number          }
   | { type: 'setSize',       uuid: string, width: number, height: number }
   | { type: 'setFocused',    uuid: string | undefined                    }
   | { type: 'stopDragging',  uuid: string                                }
   | { type: 'startDragging', uuid: string, details: IDragDetails         }
+  | { type: 'startResize',   uuid: string, details: IDragDetails         }
+  | { type: 'stopResize',    uuid: string,                               }
   ;
 
 const SystemContext = React.createContext<[
@@ -74,6 +77,11 @@ function systemReducer(state: ISystemState, action: SystemAction): ISystemState 
         }),
         focusedWindow: (action.value === true) ? action.uuid : undefined,
       };
+    case 'toggleDocked':
+      return modifyWindow(state, action, (window) => {
+        window.frame.docked = !window.frame.docked;
+        return window;
+      });
     case 'setLocation':
       return modifyWindow(state, action, (window) => {
         window.frame.x = action.x;
@@ -100,6 +108,18 @@ function systemReducer(state: ISystemState, action: SystemAction): ISystemState 
     case 'stopDragging':
       return modifyWindow(state, action, (window) => {
         window.frame.dragging = false;
+        window.frame.dragDetails = null;
+        return window;
+      });
+    case 'startResize':
+      return modifyWindow(state, action, (window) => {
+        window.frame.resizing = true;
+        window.frame.dragDetails = action.details;
+        return window;
+      });
+    case 'stopResize':
+      return modifyWindow(state, action, (window) => {
+        window.frame.resizing = false;
         window.frame.dragDetails = null;
         return window;
       });

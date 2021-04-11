@@ -14,41 +14,47 @@ const DesktopContainer = styled.div`
 `;
 
 const Desktop: React.FC = () => {
-  const [ system, dispatch ] = useSystem();
+  const [ , dispatch ] = useSystem();
 
-  const testWindow = {
-    frame: {
-      title: "Test Window",
-      icon: "calculator",
-      width: 300,
-      height: 200,
-      x: 0,
-      y: 0,
-      dragging: false,
-      dragDetails: null,
-      resizable: true,
-      actions: {
-        minimize: true,
-        restore: true,
-        close: true
-      }
-    },
-    visible: true
-  };
-
+  
   React.useEffect(() => {
+    const testWindow = {
+      frame: {
+        title: "Test Window",
+        icon: "calculator",
+        width: 300,
+        height: 200,
+        x: 0,
+        y: 0,
+        docked: false,
+        dragging: false,
+        dragDetails: null,
+        resizable: true,
+        resizing: false,
+        actions: {
+          minimize: true,
+          restore: true,
+          close: true
+        }
+      },
+      visible: true
+    };
+
     for (let i = 0; i < 8; i++) {
       dispatch({
         type: 'createWindow',
         window: JSON.parse(JSON.stringify(testWindow))
       });
     }
+    
     dispatch({
       type: 'createWindow',
       window: {
         visible: testWindow.visible,
         frame: {
           ...testWindow.frame,
+          title: 'Unresizable Window',
+          resizable: false,
           x: 400
         }
       }

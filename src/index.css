@@ -26,6 +26,8 @@ html, body, #root {
 
   overflow: hidden;
   -webkit-font-smoothing: none;
+
+  cursor: url('./assets/cursors/default.png'), auto;
 }
 
 body {
@@ -41,3 +43,41 @@ body {
   image-rendering: pixelated;
   text-rendering: optimizeSpeed;
 }
+
+.title-bar-controls button[aria-label=Restore] {
+  background-image: url("data:image/svg+xml,%3Csvg width='9' height='9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9,0H0v9h9V0z M6,5H1v3h5V5z M8,2H3v1h5V2z M8,3H7v3h1V3z M2,0H0v3h2V0z M9,7H7v2h2V7z' fill='%23000'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: top 2px left 3px;
+}
+
+.cursor-default         { cursor: url('./assets/cursors/default.png'), default; }
+.cursor-none            { cursor: none; }
+.cursor-context-menu    { cursor: context-menu; }
+.cursor-help            { cursor: url('./assets/cursors/help.png'), help; }
+.cursor-pointer         { cursor: url('./assets/cursors/pointer.png'), pointer; }
+.cursor-progress        { cursor: url('./assets/cursors/progress.png'), progress; }
+.cursor-wait            { cursor: url('./assets/cursors/wait.png'), wait; }
+.cursor-cell            { cursor: cell; }
+.cursor-crosshair       { cursor: crosshair; }
+.cursor-text            { cursor: text; }
+.cursor-vertical-text   { cursor: vertical-text; }
+.cursor-alias           { cursor: alias; }
+.cursor-copy            { cursor: copy; }
+.cursor-move            { cursor: url('./assets/cursors/move.png'), move; }
+.cursor-no-drop         { cursor: url('./assets/cursors/deny.png'), no-drop; }
+.cursor-not-allowed     { cursor: url('./assets/cursors/deny.png'), not-allowed; }
+.cursor-all-scroll      { cursor: url('./assets/cursors/move.png'), all-scroll; }
+.cursor-col-resize      { cursor: col-resize; }
+.cursor-row-resize      { cursor: row-resize; }
+.cursor-n-resize        { cursor: url('./assets/cursors/ns-resize.png'), n-resize; }
+.cursor-e-resize        { cursor: url('./assets/cursors/ew-resize.png'), e-resize; }
+.cursor-s-resize        { cursor: url('./assets/cursors/ns-resize.png'), s-resize; }
+.cursor-w-resize        { cursor: url('./assets/cursors/ew-resize.png'), w-resize; }
+.cursor-ns-resize       { cursor: url('./assets/cursors/ns-resize.png'), ns-resize; }
+.cursor-ew-resize       { cursor: url('./assets/cursors/ew-resize.png'), ew-resize; }
+.cursor-ne-resize       { cursor: url('./assets/cursors/nesw-resize.png'), ne-resize; }
+.cursor-nw-resize       { cursor: url('./assets/cursors/nwse-resize.png'), nw-resize; }
+.cursor-se-resize       { cursor: url('./assets/cursors/nwse-resize.png'), se-resize; }
+.cursor-sw-resize       { cursor: url('./assets/cursors/nesw-resize.png'), sw-resize; }
+.cursor-nesw-resize     { cursor: url('./assets/cursors/nesw-resize.png'), nesw-resize; }
+.cursor-nwse-resize     { cursor: url('./assets/cursors/nwse-resize.png'), nwse-resize; }

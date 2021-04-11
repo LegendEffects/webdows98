@@ -56,6 +56,7 @@ export const QuickLaunchItem = styled.img`
 
 export const WindowButton = styled.button`
   width: 160px;
+  min-width: 50px;
   padding-left: 4px;
   padding-right: 4px;
 

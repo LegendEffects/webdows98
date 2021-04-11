@@ -12,6 +12,15 @@ const WindowContainer = styled.div`
   will-change: transform;
 `;
 
+const ResizeHandle = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  width: 10px;
+  height: 10px;
+`;
+
 const WindowDragOutline = styled(WindowContainer)`
   z-index: 9999;
   outline: 1px dotted black;
@@ -40,6 +49,24 @@ const WindowFrame: React.FC = () => {
         }}
         >
           <WindowTitleBar />
+
+          {frame.resizable && (
+            <ResizeHandle 
+              className="cursor-nwse-resize" 
+              onMouseDown={(e) => {
+                dispatch({
+                  type: 'startResize',
+                  uuid,
+                  details: {
+                    mouse: {
+                      x: e.clientX,
+                      y: e.clientY
+                    }
+                  }
+                })
+              }}
+              />
+          )}
       </WindowContainer>
       {frame.dragging && frame.dragDetails !== null && (
         <WindowDragOutline 
@@ -63,6 +90,30 @@ const WindowFrame: React.FC = () => {
           }}
         />
       )}
+
+      {/* {frame.resizing && frame.dragDetails !== null && (
+        <WindowDragOutline 
+          style={{
+            transform: `translate3d(${frame.x}px, ${frame.y}px, 0)`,
+            width: frame.width + (mousePos.x - frame.dragDetails.mouse.x) + 4,
+            height: frame.height + (mousePos.y - frame.dragDetails.mouse.y) + 4
+          }}
+
+          onMouseUp={() => {
+            if(!frame.dragDetails) {
+              return;
+            }
+
+            dispatch({
+              type: 'setSize',
+              uuid,
+              width: frame.width + (mousePos.x - frame.dragDetails.mouse.x),
+              height: frame.height + (mousePos.y - frame.dragDetails.mouse.y)
+            });
+            dispatch({ type: 'stopResize', uuid });
+          }}
+        />
+      )} */}
     </div>
   );
 }

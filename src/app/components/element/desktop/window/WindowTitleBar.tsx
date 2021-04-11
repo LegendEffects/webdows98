@@ -33,10 +33,6 @@ const WindowTitleBar = () => {
             mouse: {
               x: e.clientX,
               y: e.clientY
-            },
-            offset: {
-              x: e.clientX - frame.x,
-              y: e.clientY - frame.y
             }
           }
         });
@@ -61,8 +57,20 @@ const WindowTitleBar = () => {
             />
           )}
 
-          <button aria-label="Maximize"></button>
-          <button aria-label="Close"></button>
+          {frame.actions.restore && (
+            <button
+              aria-label={frame.docked ? 'Restore' : 'Maximize'} 
+              onClick={() => {
+                console.log('a')
+                dispatch({
+                  type: 'toggleDocked',
+                  uuid
+                })
+              }}
+              />
+          )}
+
+          <button aria-label="Close" disabled={frame.actions.close === false} />
         </div>
     </TitleBar>
   )
