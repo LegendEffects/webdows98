@@ -11,14 +11,12 @@
   src: url('./assets/font/MS-Sans-17.woff') format("woff");
   font-weight: normal;
   font-style: normal;
-  font-display: swap
+  font-display: swap;
 }
 
 html, body, #root {
   min-width: 100vw;
   min-height: 100vh;
-
-  letter-spacing: 1px;
   font-size: 12px;
   line-height: 1.3em;
   font-family: 'MS Sans Pixel 13', 'Times New Roman', Times, serif;

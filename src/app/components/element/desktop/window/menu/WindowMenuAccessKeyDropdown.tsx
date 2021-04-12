@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react"
-import findElementByClass from "../../../../../utils/FindElementByClass";
 import Dropdown from "../../../global/dropdown/Dropdown";
 import WindowMenuAccessKey from "./WindowMenuAccessKey";
 
@@ -19,14 +18,13 @@ const WindowMenuAccessKeyDropdown: React.FC<WindowMenuAccessKeyDropdownProps> = 
   const dropdown = React.useRef<HTMLDivElement>(null);
 
   return (
-    <WindowMenuContainer>
+    <WindowMenuContainer
+      onMouseLeave={(e) => {
+        setIsOpen(false);
+      }}
+      >
       <WindowMenuAccessKey 
         className={isOpen ? 'active' : undefined}
-        onMouseLeave={(e) => {
-          if(isOpen && !findElementByClass(e.relatedTarget as HTMLElement, 'dropdown')) {
-            setIsOpen(false);
-          }
-        }}
         onClick={() => {
           setIsOpen(!isOpen);
         }}

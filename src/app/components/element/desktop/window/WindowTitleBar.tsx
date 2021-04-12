@@ -3,10 +3,17 @@ import { useSystem } from "../../../../contexts/SystemContext";
 import { useWindow } from "../../../../contexts/WindowContext";
 
 const TitleBar = styled.div`
+  background: linear-gradient(90deg,grey,#b5b5b5);
+  color: var(--surface);
   user-select: none;
+  
+  &.active {
+    background: linear-gradient(90deg, var(--dialog-blue), var(--dialog-blue-light));
+    color: var(--button-highlight);
+  }
 `;
 
-const TitleBarTest = styled.div`
+const TitleBarText = styled.div`
   display: flex;
   align-items: center;
 
@@ -16,19 +23,18 @@ const TitleBarTest = styled.div`
   .icon {
     margin-right: 3px;
   }
-
 `;
 
 const WindowTitleBar = () => {
-  const [ , dispatch ] = useSystem();
+  const [ { focusedWindow }, dispatch ] = useSystem();
   const { uuid, frame } = useWindow();
 
   return (
-    <TitleBar className="title-bar drag-point">
-        <TitleBarTest className="title-bar-text drag-point">
+    <TitleBar className={`title-bar drag-point ${focusedWindow === uuid && 'active'}`}>
+        <TitleBarText className="title-bar-text drag-point">
           <div className={`drag-point icon ${frame.icon}_16`} />
           {frame.title}
-        </TitleBarTest>
+        </TitleBarText>
 
         <div className="title-bar-controls">
           {frame.actions.minimize && (

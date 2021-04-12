@@ -26,15 +26,10 @@ const NotepadApp: IBaseApplication = {
       <>
         <WindowMenuBar>
           <WindowMenuAccessKeyDropdown title="File">
-            <DropdownItem icon="icon-notepad">
-              Test Dropdown
-            </DropdownItem>
-            <DropdownItem>
-              Test Dropdown
-            </DropdownItem>
-            <DropdownItem>
-              Test Dropdown
-            </DropdownItem>
+            <DropdownItem>New</DropdownItem>
+            <DropdownItem>Open</DropdownItem>
+            <DropdownItem>Save</DropdownItem>
+            <DropdownItem>Save As</DropdownItem>
           </WindowMenuAccessKeyDropdown>
   
           <WindowMenuAccessKeyDropdown title="Edit" /> 
