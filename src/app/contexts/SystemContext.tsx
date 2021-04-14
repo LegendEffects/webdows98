@@ -17,7 +17,7 @@ type SystemAction =
   | { type: 'stopDrag'                                                         }
   ;
 
-const SystemContext = React.createContext<[
+export const SystemContext = React.createContext<[
   ISystemState,
   React.Dispatch<SystemAction>
 ]>(undefined as any);

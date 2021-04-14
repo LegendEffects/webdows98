@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import WindowBody from "../../desktop/window/WindowBody";
 import WindowMenuBar from "../../desktop/window/menu/WindowMenuBar";
 import WindowScrollResize from "../../desktop/window/WindowScrollResize";
 import WindowMenuAccessKeyDropdown from "../../desktop/window/menu/WindowMenuAccessKeyDropdown";
 import DropdownItem from "../../global/dropdown/DropdownItem";
 import IBaseApplication from "../../../../interfaces/IBaseApplication";
+import { WindowBody } from "../../desktop/window/structure/WindowElements";
 
 const TextArea = styled.textarea`
   width: 100%;

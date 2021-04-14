@@ -1,3 +1,5 @@
+import ActionType from "./ActionType";
+
 export default interface IWindowFrame {
   title: string;
   icon?: string;
@@ -13,9 +15,5 @@ export default interface IWindowFrame {
   resizable: boolean;
   component: React.FC;
 
-  actions: {
-    minimize: boolean
-    restore: boolean
-    close: boolean
-  };
+  actions: ActionType[]
 }

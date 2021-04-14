@@ -1,3 +1,4 @@
+import ActionType from "../interfaces/ActionType";
 import IBaseApplication from "../interfaces/IBaseApplication";
 import IWindow from "../interfaces/IWindow";
 
@@ -6,16 +7,8 @@ const defaultFrame= {
   y: 0,
   width: 300,
   height: 200,
-  actions: {
-    minimize: true,
-    restore: true,
-    close: true
-  },
-
+  actions: [ActionType.RESTORE, ActionType.MINIMIZE, ActionType.CLOSE],
   docked: false,
-  dragging: false,
-  resizing: false,
-  dragDetails: null,
   resizable: true,
 }
 
