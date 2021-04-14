@@ -10,7 +10,9 @@ export interface WindowProps extends WindowFrameProps  {
 const Window: React.FC<WindowProps> = ({ window, ...props }) => {
   return (
     <WindowProvider window={window}>
-      <WindowFrame {...props} />
+      <WindowFrame {...props}>
+        <window.frame.component />
+      </WindowFrame>
     </WindowProvider>
   );
 }

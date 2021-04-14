@@ -1,8 +1,6 @@
-import IDragDetails from "./IDragDetails";
-
 export default interface IWindowFrame {
   title: string;
-  icon: string;
+  icon?: string;
   
   width: number;
   height: number;
@@ -11,11 +9,8 @@ export default interface IWindowFrame {
   y: number;
   
   docked: boolean;
-  dragging: boolean;
-  dragDetails: null | IDragDetails;
 
   resizable: boolean;
-  resizing: boolean;
   component: React.FC;
 
   actions: {

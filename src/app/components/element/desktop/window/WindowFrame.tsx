@@ -33,7 +33,7 @@ export interface WindowFrameProps {
   zIndex: number;
 }
 
-const WindowFrame: React.FC<WindowFrameProps> = ({ zIndex }) => {
+const WindowFrame: React.FC<WindowFrameProps> = ({ children, zIndex }) => {
   const [ , dispatch ] = useSystem();
   const { uuid, frame } = useWindow();
 
@@ -55,8 +55,6 @@ const WindowFrame: React.FC<WindowFrameProps> = ({ zIndex }) => {
       }}
       >
         <WindowTitleBar />
-
-        <frame.component />
 
         {frame.resizable && (
           <ResizeHandle className="resize-point cursor-nwse-resize" />

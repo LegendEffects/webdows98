@@ -3,7 +3,7 @@ import { useSystem } from "../../../../contexts/SystemContext";
 import { useWindow } from "../../../../contexts/WindowContext";
 
 const TitleBar = styled.div`
-  background: linear-gradient(90deg,grey,#b5b5b5);
+  background: linear-gradient(90deg,var(--button-shadow),#b5b5b5);
   color: var(--surface);
   user-select: none;
   
