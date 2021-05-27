@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/webdows98/static/css/main.0a430317.chunk.css",
-    "main.js": "/webdows98/static/js/main.e536c44f.chunk.js",
-    "main.js.map": "/webdows98/static/js/main.e536c44f.chunk.js.map",
+    "main.js": "/webdows98/static/js/main.7db18352.chunk.js",
+    "main.js.map": "/webdows98/static/js/main.7db18352.chunk.js.map",
     "runtime-main.js": "/webdows98/static/js/runtime-main.c076cd57.js",
     "runtime-main.js.map": "/webdows98/static/js/runtime-main.c076cd57.js.map",
     "static/css/2.600779d4.chunk.css": "/webdows98/static/css/2.600779d4.chunk.css",
@@ -19,13 +19,14 @@
     "static/js/3.c86ead44.chunk.js.LICENSE.txt": "/webdows98/static/js/3.c86ead44.chunk.js.LICENSE.txt",
     "static/media/index.css": "/webdows98/static/media/MS-Sans-17.2e3c9895.woff",
     "static/media/98.css": "/webdows98/static/media/ms_sans_serif_bold.9fbe7124.woff",
-    "static/media/sheet.css": "/webdows98/static/media/spritesheet.e70b35a5.png"
+    "static/media/sheet.css": "/webdows98/static/media/spritesheet.e70b35a5.png",
+    "static/media/startup.a52aaba4.mp3": "/webdows98/static/media/startup.a52aaba4.mp3"
   },
   "entrypoints": [
     "static/js/runtime-main.c076cd57.js",
     "static/css/2.600779d4.chunk.css",
     "static/js/2.232e0d9b.chunk.js",
     "static/css/main.0a430317.chunk.css",
-    "static/js/main.e536c44f.chunk.js"
+    "static/js/main.7db18352.chunk.js"
   ]
 }
