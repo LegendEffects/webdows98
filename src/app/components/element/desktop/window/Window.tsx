@@ -23,7 +23,7 @@ const Window: React.FC<WindowProps> = ({ children, window, ...props }) => {
 
         onMouseDown={() => {
           dispatch({
-            type: 'setFocused',
+            type: 'SET_FOCUSED',
             uuid: window.uuid
           });
         }}
@@ -37,7 +37,7 @@ const Window: React.FC<WindowProps> = ({ children, window, ...props }) => {
             switch(action) {
               case ActionType.MINIMIZE:
                 dispatch({
-                  type: 'setVisibility',
+                  type: 'SET_VISIBILITY',
                   uuid: window.uuid,
                   value: false,
                 });
@@ -45,7 +45,7 @@ const Window: React.FC<WindowProps> = ({ children, window, ...props }) => {
 
               case ActionType.RESTORE:
                 dispatch({
-                  type: 'toggleDocked',
+                  type: 'TOGGLE_DOCKED',
                   uuid: window.uuid,
                 });
                 break;

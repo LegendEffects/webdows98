@@ -47,7 +47,7 @@ const WindowArea: React.FC = () => {
       case DragType.MOVE:
         if(!system.dragging.target) return;
         dispatch({
-          type: 'setLocation',
+          type: 'SET_LOCATION',
           uuid: system.dragging.target.uuid,
           x: system.dragging.target.frame.x + mousePos.x - system.dragging.mousePos.x,
           y: system.dragging.target.frame.y + mousePos.y - system.dragging.mousePos.y
@@ -56,7 +56,7 @@ const WindowArea: React.FC = () => {
       case DragType.RESIZE:
         if(!system.dragging.target) return;
         dispatch({
-          type: 'setSize',
+          type: 'SET_SIZE',
           uuid: system.dragging.target.uuid,
           width: system.dragging.target.frame.width + (mousePos.x - system.dragging.mousePos.x),
           height: system.dragging.target.frame.height + (mousePos.y - system.dragging.mousePos.y)
@@ -78,7 +78,7 @@ const WindowArea: React.FC = () => {
           type = DragType.RESIZE;
         } else if(el.classList.contains('desktop')){
           dispatch({
-            type: 'startDrag',
+            type: 'START_DRAG',
             action: DragType.HIGHLIGHT,
             mouse: mousePos
           });
@@ -94,13 +94,13 @@ const WindowArea: React.FC = () => {
           }
 
           dispatch({
-            type: 'setDocked',
+            type: 'SET_DOCKED',
             uuid: container.uuid,
             value: false
           });
 
           dispatch({
-            type: 'startDrag',
+            type: 'START_DRAG',
             uuid: container.uuid,
             action: type,
             mouse: mousePos
@@ -115,7 +115,7 @@ const WindowArea: React.FC = () => {
         if(system.dragging) {
           handleDragStop();
           dispatch({
-            type: 'stopDrag'
+            type: 'STOP_DRAG'
           });
         }
       }}

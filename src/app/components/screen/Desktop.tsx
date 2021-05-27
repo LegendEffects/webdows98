@@ -20,7 +20,7 @@ const Desktop: React.FC = () => {
 
   useEffect(() => {
     dispatch({
-      type: 'createWindow',
+      type: 'CREATE_WINDOW',
       window: createApplicationInstance(NotepadApp)
     });
   }, [ dispatch ])

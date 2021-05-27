@@ -6,15 +6,15 @@ import ILocation from "../interfaces/ILocation";
 import DragType from "../interfaces/DragType";
 
 type SystemAction = 
-  | { type: 'createWindow',  window: Omit<IWindow, 'uuid'>                     }
-  | { type: 'toggleDocked',  uuid:  string                                     }
-  | { type: 'setDocked',     uuid:  string, value: boolean                     }
-  | { type: 'setVisibility', uuid:  string, value: boolean                     }
-  | { type: 'setLocation',   uuid:  string, x: number, y: number               }
-  | { type: 'setSize',       uuid:  string, width: number, height: number      }
-  | { type: 'setFocused',    uuid?: string                                     }
-  | { type: 'startDrag',     uuid?: string, action: DragType, mouse: ILocation }
-  | { type: 'stopDrag'                                                         }
+  | { type: 'CREATE_WINDOW',  window: Omit<IWindow, 'uuid'>                     }
+  | { type: 'TOGGLE_DOCKED',  uuid:  string                                     }
+  | { type: 'SET_DOCKED',     uuid:  string, value: boolean                     }
+  | { type: 'SET_VISIBILITY', uuid:  string, value: boolean                     }
+  | { type: 'SET_LOCATION',   uuid:  string, x: number, y: number               }
+  | { type: 'SET_SIZE',       uuid:  string, width: number, height: number      }
+  | { type: 'SET_FOCUSED',    uuid?: string                                     }
+  | { type: 'START_DRAG',     uuid?: string, action: DragType, mouse: ILocation }
+  | { type: 'STOP_DRAG'                                                         }
   ;
 
 export const SystemContext = React.createContext<[
@@ -59,7 +59,7 @@ function reorderWindows(state: ISystemState, topUuid: string): ISystemState {
 
 function systemReducer(state: ISystemState, action: SystemAction): ISystemState {
   switch(action.type) {
-    case 'createWindow':
+    case 'CREATE_WINDOW':
       return modifyWindows(state, (windows) => {
         const newWindow = {
           ...action.window,
@@ -69,7 +69,7 @@ function systemReducer(state: ISystemState, action: SystemAction): ISystemState 
         windows.push(newWindow);
         return windows;
       })
-    case 'setVisibility':
+    case 'SET_VISIBILITY':
       return {
         ...modifyWindow(state, action, (window) => {
           window.visible = action.value;
@@ -77,34 +77,34 @@ function systemReducer(state: ISystemState, action: SystemAction): ISystemState 
         }),
         focusedWindow: (action.value === true) ? action.uuid : undefined,
       };
-    case 'toggleDocked':
+    case 'TOGGLE_DOCKED':
       return modifyWindow(state, action, (window) => {
         window.frame.docked = !window.frame.docked;
         return window;
       });
-    case 'setDocked':
+    case 'SET_DOCKED':
       return modifyWindow(state, action, (window) => {
         window.frame.docked = action.value;
         return window;
       });
-    case 'setLocation':
+    case 'SET_LOCATION':
       return modifyWindow(state, action, (window) => {
         window.frame.x = action.x;
         window.frame.y = action.y;
         return window;
       });
-    case 'setSize':
+    case 'SET_SIZE':
       return modifyWindow(state, action, (window) => {
         window.frame.width = action.width;
         window.frame.height = action.height;
         return window;
       });
-    case 'setFocused':
+    case 'SET_FOCUSED':
       return {
         ...(action.uuid ? reorderWindows(state, action.uuid) : state),
         focusedWindow: action.uuid
       };
-    case 'startDrag':
+    case 'START_DRAG':
       const target = (!action.uuid) ? undefined : state.windows.find((w) => w.uuid === action.uuid);
 
       return {
@@ -116,7 +116,7 @@ function systemReducer(state: ISystemState, action: SystemAction): ISystemState 
           target
         }
       };
-    case 'stopDrag':
+    case 'STOP_DRAG':
       return {
         ...state,
         dragging: undefined

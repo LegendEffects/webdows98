@@ -3,10 +3,10 @@ import IApplicationDetails from "../interfaces/IApplicationDetails";
 import IStartMenuState from "../interfaces/state/IStartMenuState";
 
 type StartMenuAction = 
-  | { type: 'addProgram',    details: IApplicationDetails }
-  | { type: 'removeProgram', details: IApplicationDetails }
-  | { type: 'toggleOpen',    details: IApplicationDetails }
-  | { type: 'setOpen',       value: boolean }
+  | { type: 'ADD_PROGRAM',    details: IApplicationDetails }
+  | { type: 'REMOVE_PROGRAM', details: IApplicationDetails }
+  | { type: 'TOGGLE_OPEN',    details: IApplicationDetails }
+  | { type: 'SET_OPEN',       value: boolean }
   ;
 
 const StartMenuContext = React.createContext<[
@@ -16,20 +16,20 @@ const StartMenuContext = React.createContext<[
 
 function startMenuReducer(state: IStartMenuState, action: StartMenuAction) {
   switch(action.type) {
-    case 'addProgram':
+    case 'ADD_PROGRAM':
       state.programs.push(action.details);
       return state;
-    case 'removeProgram':
+    case 'REMOVE_PROGRAM':
       return {
         ...state,
         programs: state.programs.filter((program) => program !== action.details)
       };
-    case 'setOpen':
+    case 'SET_OPEN':
       return {
         ...state,
         open: action.value
       };
-    case 'toggleOpen':
+    case 'TOGGLE_OPEN':
       return {
         ...state,
         open: !state.open

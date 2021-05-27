@@ -135,14 +135,14 @@ const Taskbar: React.FC = () => {
               onClick={() => {
                 if(window.visible && window.uuid !== system.focusedWindow) {
                   dispatch({
-                    type: 'setFocused',
+                    type: 'SET_FOCUSED',
                     uuid: window.uuid
                   });
                   return;
                 }
                 
                 dispatch({
-                  type: 'setVisibility',
+                  type: 'SET_VISIBILITY',
                   uuid: window.uuid,
                   value: !window.visible
                 });
