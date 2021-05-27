@@ -9,6 +9,7 @@ import Icon from "../global/Icon";
 import useSound from "use-sound";
 import { useUser } from "../../../contexts/UserContext";
 import React from "react";
+import defineApplication from "../../../utils/DefineApplication";
 
 const LoginComponent = () => {
   const [ state, dispatch ] = useSystem();
@@ -86,18 +87,13 @@ const LoginComponent = () => {
   )
 };
 
-const LoginWindow: IBaseApplication = {
-  details: {
-    title: 'Enter Network Password',
-    width: 450,
-    height: 140,
-    resizable: false,
-    x: (window.innerWidth / 2 ) - (450 / 2),
-    y: (window.innerHeight / 2 ) - (140 / 2),
-    actions: [ ActionType.CLOSE ],
-    decorated: false,
-  },
-  component: LoginComponent,
-}
-
-export default LoginWindow;
+export default defineApplication(LoginComponent, {
+  title: 'Enter Network Password',
+  width: 450,
+  height: 140,
+  resizable: false,
+  x: (window.innerWidth / 2 ) - (450 / 2),
+  y: (window.innerHeight / 2 ) - (140 / 2),
+  actions: [ ActionType.CLOSE ],
+  decorated: false,
+});
