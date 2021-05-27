@@ -3,7 +3,6 @@ import React from "react";
 import { useSystem } from "../../../contexts/SystemContext";
 import useMousePos from "../../../hooks/useMousePos";
 import DragType from "../../../interfaces/DragType";
-import BuildInfo from "./BuildInfo";
 import Window from "./window/Window";
 import WindowDrag from "./WindowDrag";
 

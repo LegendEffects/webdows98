@@ -8,6 +8,7 @@ export interface IUserState {
 
 type UserAction =
   | { type: 'SET_USER', value: IUser | null }
+  | { type: 'LOGOUT'                        }
   ;
 
 export const UserContext = React.createContext<[
@@ -23,6 +24,12 @@ function userReducer(state: IUserState, action: UserAction): IUserState {
         authenticated: true,
         user: action.value
       };
+    case 'LOGOUT':
+      return {
+        ...state,
+        authenticated: false,
+        user: null
+      }
     default:
       return state;
   }

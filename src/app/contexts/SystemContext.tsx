@@ -34,12 +34,12 @@ function modifyWindow(state: ISystemState, action: SystemAction & {uuid: string}
   }
 }
 
-function modifyWindows(state: ISystemState, modifier: (windows: IWindow[]) => IWindow[]) {
-  return {
-    ...state,
-    windows: modifier([...state.windows])
-  }
-}
+// function modifyWindows(state: ISystemState, modifier: (windows: IWindow[]) => IWindow[]) {
+//   return {
+//     ...state,
+//     windows: modifier([...state.windows])
+//   }
+// }
 
 function reorderWindows(state: ISystemState, topUuid: string): ISystemState {
   const windows = [...state.windows];

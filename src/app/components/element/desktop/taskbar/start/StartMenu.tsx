@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
+import { useUser } from '../../../../../contexts/UserContext';
 
 const StartMenuContainer = styled.div`
   position: absolute;
@@ -80,7 +81,7 @@ const StartMenuSeparator = styled.div`
   content: "";
 `
 
-const StartMenuItem = styled.div`
+const StartMenuItem = styled.button`
   text-align: left;
 
   display: flex;
@@ -90,6 +91,7 @@ const StartMenuItem = styled.div`
 
   height: 35px;
   padding-left: 5px;
+  box-shadow: none;
 
   .icon {
     margin-right: 3px;
@@ -104,6 +106,8 @@ const StartMenuItem = styled.div`
 export interface StartMenuProps { }
 
 const StartMenu: React.FC<StartMenuProps> = () => {
+  const [ { user }, dispatchUser ] = useUser();
+
   return (
     <StartMenuContainer>
       <StartMenuInner>
@@ -115,9 +119,9 @@ const StartMenu: React.FC<StartMenuProps> = () => {
         <StartMenuList>
           <StartMenuSeparator />
 
-          <StartMenuItem>
+          <StartMenuItem onClick={() => dispatchUser({ type: 'LOGOUT' })}>
             <div className="icon icon-key_win_32" />
-            Log Off Anon...
+            Log Off{user?.name ? ` ${user.name}` : ''}...
           </StartMenuItem>
           <StartMenuItem>
             <div className="icon icon-shut_down_normal_32" />

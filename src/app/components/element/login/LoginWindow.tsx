@@ -1,12 +1,10 @@
 import { useSystem } from "../../../contexts/SystemContext";
 import { useWindow } from "../../../contexts/WindowContext";
 import ActionType from "../../../interfaces/ActionType";
-import IBaseApplication from "../../../interfaces/IBaseApplication";
 import { WindowBody } from "../desktop/window/structure/WindowElements";
 import WindowFrame from "../desktop/window/structure/WindowFrame";
 import WindowTitleBar from "../desktop/window/structure/WindowTitleBar";
 import Icon from "../global/Icon";
-import useSound from "use-sound";
 import { useUser } from "../../../contexts/UserContext";
 import React from "react";
 import defineApplication from "../../../utils/DefineApplication";
@@ -64,18 +62,20 @@ const LoginComponent = () => {
               <div>
                 <Icon icon="icon-network_cool_two_pcs" size={48} />
               </div>
-              <div className="flex flex-col w-100">
+              
+              <form className="flex flex-col w-100">
                 <div>Enter your network password for Michaelsoft Networking</div>
 
                 <div className="grid gap-x-6 gap-y-2 mt-8 whitespace-nowrap" style={{gridTemplateColumns: 'max-content auto'}}>
                   <label>User name:</label>
                   <input className="w-full" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
                 
+                  {/* Purposely prevent auto completion of passwords in the field. */}
                   <label>Password:</label>
-                  <input className="w-full" type="password" />
+                  <input className="w-full" type="password" autoComplete="none" />
                 </div>
+              </form>
 
-              </div>
               <div className="flex flex-col">
                 <button autoFocus onClick={() => doLogin()}>OK</button>
                 <button className="mt-2" onClick={() => doLogin(true)}>Cancel</button>

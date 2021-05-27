@@ -10,6 +10,8 @@ const BuildInfoContainer = styled.div`
   font-size: 14px;
   color: white;
   text-shadow: 2px 2px 0 black;
+
+  user-select: none;
 `;
 
 const BuildInfo: React.FC = () => {
