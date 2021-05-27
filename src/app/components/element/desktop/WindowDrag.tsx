@@ -42,6 +42,7 @@ const WindowDrag: React.FC = () => {
     return (
       <WindowDragOutline
         style={{
+          cursor: 'nwse-resize',
           transform: `translate3d(${dragging.target.frame.x}px, ${dragging.target.frame.y}px, 0)`,
           width: dragging.target.frame.width + (mousePos.x - dragging.mousePos.x),
           height: dragging.target.frame.height + (mousePos.y - dragging.mousePos.y)
