@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import { TASKBAR_HEIGHT } from "../../../../../constants/Taskbar";
 import StartMenu from "./StartMenu";
+import startButtonImage from "../../../../../../assets/start_button.png";
 
 const StartBtnContainer = styled.div`
   display: flex;
@@ -11,7 +12,7 @@ const StartBtnContainer = styled.div`
 `;
 
 const StartBtn = styled.button`
-  background-image: url('assets/icons/start_button.png');
+  background-image: url(${startButtonImage});
   background-repeat: no-repeat;
   background-position: center;
 
