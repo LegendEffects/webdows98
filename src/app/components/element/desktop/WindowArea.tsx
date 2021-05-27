@@ -93,18 +93,23 @@ const WindowArea: React.FC = () => {
             return;
           }
 
-          dispatch({
-            type: 'SET_DOCKED',
-            uuid: container.uuid,
-            value: false
-          });
+          const windowInstance = system.windows.find((w) => w.uuid === container.uuid);
 
-          dispatch({
-            type: 'START_DRAG',
-            uuid: container.uuid,
-            action: type,
-            mouse: mousePos
-          });
+          if(!windowInstance?.frame.docked) {
+            dispatch({
+              type: 'SET_DOCKED',
+              uuid: container.uuid,
+              value: false
+            });
+  
+            dispatch({
+              type: 'START_DRAG',
+              uuid: container.uuid,
+              action: type,
+              mouse: mousePos
+            });
+          }
+
           e.preventDefault();
           e.stopPropagation();
           return;
