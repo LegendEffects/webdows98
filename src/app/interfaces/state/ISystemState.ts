@@ -9,8 +9,8 @@ export default interface ISystemState {
   dragging?: {
     type: DragType;
     mousePos: ILocation;
-    targetUuid?: string;
-    target?: IWindow; // UUID of the target window
+    targetUuid?: string; // UUID of the target window
+    target?: IWindow;
   },
   focusedWindow?: string;
 }

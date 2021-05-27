@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { useSystem } from "../../../contexts/SystemContext";
 import useMousePos from "../../../hooks/useMousePos";
 import DragType from "../../../interfaces/DragType";
+import ISystemState from "../../../interfaces/state/ISystemState";
 
 const WindowDragOutline = styled.div`
   z-index: 9999;
@@ -15,12 +15,12 @@ const WindowDragOutline = styled.div`
   will-change: contents;
 `;
 
-const WindowDrag: React.FC = () => {
-  const mousePos = useMousePos();
+export interface WindowDragProps {
+  dragging?: ISystemState['dragging'];
+}
 
-  const [{
-    dragging
-  }] = useSystem();
+const WindowDrag: React.FC<WindowDragProps> = ({ dragging }) => {
+  const mousePos = useMousePos();
 
   if(!dragging) {
     return (<> </>);

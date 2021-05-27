@@ -17,45 +17,49 @@ const Window: React.FC<WindowProps> = ({ children, window, ...props }) => {
   return (
     <WindowProvider window={window}>
 
-      <WindowFrame 
-        data-uuid={window.uuid}
-        focused={window.uuid === state.focusedWindow}
+      {window.frame.decorated ? (
+        <WindowFrame 
+          data-uuid={window.uuid}
+          focused={window.uuid === state.focusedWindow}
 
-        onMouseDown={() => {
-          dispatch({
-            type: 'SET_FOCUSED',
-            uuid: window.uuid
-          });
-        }}
-
-        {...window.frame}
-        {...props}
-        >
-        <WindowTitleBar
-          {...window.frame}
-          onAction={(action) => {
-            switch(action) {
-              case ActionType.MINIMIZE:
-                dispatch({
-                  type: 'SET_VISIBILITY',
-                  uuid: window.uuid,
-                  value: false,
-                });
-                break;
-
-              case ActionType.RESTORE:
-                dispatch({
-                  type: 'TOGGLE_DOCKED',
-                  uuid: window.uuid,
-                });
-                break;
-            }
+          onMouseDown={() => {
+            dispatch({
+              type: 'SET_FOCUSED',
+              uuid: window.uuid
+            });
           }}
-          availableActions={window.frame.actions}
-          />
 
-          <window.frame.component />
-      </WindowFrame>
+          {...window.frame}
+          {...props}
+          >
+          <WindowTitleBar
+            {...window.frame}
+            onAction={(action) => {
+              switch(action) {
+                case ActionType.MINIMIZE:
+                  dispatch({
+                    type: 'SET_VISIBILITY',
+                    uuid: window.uuid,
+                    value: false,
+                  });
+                  break;
+
+                case ActionType.RESTORE:
+                  dispatch({
+                    type: 'TOGGLE_DOCKED',
+                    uuid: window.uuid,
+                  });
+                  break;
+              }
+            }}
+            availableActions={window.frame.actions}
+            />
+
+            <window.frame.component />
+        </WindowFrame>
+      ) : (
+        <window.frame.component />
+      )}
 
     </WindowProvider>
   );

@@ -6,7 +6,7 @@ import ILocation from "../interfaces/ILocation";
 import DragType from "../interfaces/DragType";
 
 type SystemAction = 
-  | { type: 'CREATE_WINDOW',  window: Omit<IWindow, 'uuid'>                     }
+  | { type: 'CREATE_WINDOW',  window: Omit<IWindow, 'uuid'>, focus?: boolean    }
   | { type: 'TOGGLE_DOCKED',  uuid:  string                                     }
   | { type: 'SET_DOCKED',     uuid:  string, value: boolean                     }
   | { type: 'SET_VISIBILITY', uuid:  string, value: boolean                     }
@@ -60,15 +60,19 @@ function reorderWindows(state: ISystemState, topUuid: string): ISystemState {
 function systemReducer(state: ISystemState, action: SystemAction): ISystemState {
   switch(action.type) {
     case 'CREATE_WINDOW':
-      return modifyWindows(state, (windows) => {
-        const newWindow = {
-          ...action.window,
-          uuid: uuidv4()
-        };
-  
-        windows.push(newWindow);
-        return windows;
-      })
+      const uuid = uuidv4();
+      const windows = [...state.windows];
+
+      windows.push({
+        ...action.window,
+        uuid
+      });
+
+      return {
+        ...state,
+        windows,
+        focusedWindow: (action.focus ? uuid : state.focusedWindow)
+      }
     case 'SET_VISIBILITY':
       return {
         ...modifyWindow(state, action, (window) => {

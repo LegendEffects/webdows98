@@ -1,23 +1,17 @@
-import styled from "@emotion/styled";
 import React, { useEffect } from "react";
-import { useSystem } from "../../contexts/SystemContext";
+import { SystemProvider, useSystem } from "../../contexts/SystemContext";
 import createApplicationInstance from "../../utils/CreateApplicationInstance";
 import NotepadApp from "../element/application/notepad/NotepadApp";
+import BuildInfo from "../element/desktop/BuildInfo";
+import DesktopContainer from "../element/desktop/DesktopContainer";
 import Taskbar from "../element/desktop/taskbar/Taskbar";
 import WindowArea from "../element/desktop/WindowArea";
+import useSound from "use-sound";
 
-const DesktopContainer = styled.div`
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-
-  background: rgb(13,113,115);
-  overflow: hidden;
-`;
-
-const Desktop: React.FC = () => {
+const DesktopInner: React.FC = () => {
   const [ , dispatch ] = useSystem();
-
+  const [ playStartup ] = useSound("/assets/sound/98/startup.mp3");
+  
   useEffect(() => {
     dispatch({
       type: 'CREATE_WINDOW',
@@ -25,12 +19,28 @@ const Desktop: React.FC = () => {
     });
   }, [ dispatch ])
 
+  useEffect(() => {
+    playStartup();
+  }, [ playStartup ])
+  
   return (
     <DesktopContainer>
-      <WindowArea />
+      <WindowArea>
+        <BuildInfo />
+      </WindowArea>
+      
       <Taskbar />
     </DesktopContainer>
   )
 }
+
+const Desktop: React.FC = () => {
+  return (
+    <SystemProvider>
+      <DesktopInner />
+    </SystemProvider>
+  );
+}
+
 
 export default Desktop;

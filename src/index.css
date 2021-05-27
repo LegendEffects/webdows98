@@ -1,3 +1,5 @@
+@tailwind utilities;
+
 @font-face {
   font-family: 'MS Sans Pixel 13';
   src: url('./assets/font/MS-Sans-13.woff') format("woff");

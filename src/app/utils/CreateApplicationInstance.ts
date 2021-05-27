@@ -10,6 +10,7 @@ const defaultFrame= {
   actions: [ActionType.RESTORE, ActionType.MINIMIZE, ActionType.CLOSE],
   docked: false,
   resizable: true,
+  decorated: true,
 }
 
 export default function createApplicationInstance({ details, component }: IBaseApplication): Omit<IWindow, 'uuid'> {

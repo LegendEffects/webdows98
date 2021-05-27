@@ -9,14 +9,16 @@ import 'xp.css/dist/98.css';
 import './index.css';
 
 import reportWebVitals from './reportWebVitals';
-import { SystemProvider } from './app/contexts/SystemContext';
-import Desktop from './app/components/screen/Desktop';
+import { UserProvider } from './app/contexts/UserContext';
+import App from './app';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SystemProvider>
-      <Desktop />
-    </SystemProvider>
+    <UserProvider>
+
+      <App />
+      
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

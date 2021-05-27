@@ -11,9 +11,10 @@ export default interface IWindowFrame {
   y: number;
   
   docked: boolean;
-
+  
   resizable: boolean;
+  decorated: boolean;
   component: React.FC;
 
-  actions: ActionType[]
+  actions: ActionType[];
 }

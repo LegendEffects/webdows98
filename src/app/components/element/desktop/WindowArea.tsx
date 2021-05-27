@@ -34,7 +34,11 @@ function findWindowContainer(element: HTMLElement, limit: number = 8): {el: HTML
   return null;
 }
 
-const WindowArea: React.FC = () => {
+interface WindowAreaProps {
+  preventHighlighting?: boolean;
+}
+
+const WindowArea: React.FC<WindowAreaProps> = ({ children, preventHighlighting }) => {
   const [ system, dispatch ] = useSystem();
   const mousePos = useMousePos();
 
@@ -77,6 +81,10 @@ const WindowArea: React.FC = () => {
         } else if(el.classList.contains('resize-point')) {
           type = DragType.RESIZE;
         } else if(el.classList.contains('desktop')){
+          if(preventHighlighting) {
+            return;
+          }
+          
           dispatch({
             type: 'START_DRAG',
             action: DragType.HIGHLIGHT,
@@ -123,13 +131,13 @@ const WindowArea: React.FC = () => {
         }
       }}
       >
-        <WindowDrag />
+        <WindowDrag dragging={system.dragging} />
 
         {system.windows.filter(window => window.visible === true).map((window, i) => (
           <Window key={window.uuid} z={i + 5} window={window} />
         ))}
 
-        <BuildInfo />
+        {children}
     </WindowContainer>
   )
 }

@@ -1,18 +1,8 @@
-export default interface IApplicationDetails {
-  title: string;
-  icon: string;
+import IWindowFrame from "./IWindowFrame";
 
+export default interface IApplicationDetails extends Partial<IWindowFrame> {
+  title: string;
+  
   width: number;
   height: number;
-
-  resizable?: boolean;
-
-  actions?: {
-    minimize?: boolean;
-    restore?: boolean;
-    close?: boolean;
-  }
-
-  x?: 0;
-  y?: 0;
 }
