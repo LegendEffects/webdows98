@@ -10,7 +10,7 @@ import useSound from "use-sound";
 
 const DesktopInner: React.FC = () => {
   const [ , dispatch ] = useSystem();
-  const [ playStartup ] = useSound("/assets/sound/98/startup.mp3");
+  const [ playStartup ] = useSound("assets/sound/98/startup.mp3");
   
   useEffect(() => {
     dispatch({

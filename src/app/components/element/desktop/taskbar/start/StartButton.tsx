@@ -11,7 +11,7 @@ const StartBtnContainer = styled.div`
 `;
 
 const StartBtn = styled.button`
-  background-image: url('/assets/icons/start_button.png');
+  background-image: url('assets/icons/start_button.png');
   background-repeat: no-repeat;
   background-position: center;
 

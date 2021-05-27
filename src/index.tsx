@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 import 'normalize.css/normalize.css';
 import './assets/spritesheet/sheet.css';
-import 'xp.css/themes/98/_variables.scss';
+import './assets/_variables.css';
 import 'xp.css/dist/98.css';
 import './index.css';
 
