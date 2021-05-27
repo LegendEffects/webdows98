@@ -83,7 +83,6 @@ const WindowArea: React.FC = () => {
             mouse: mousePos
           });
           e.preventDefault();
-          e.stopPropagation();
           return;
         }
 
@@ -111,7 +110,6 @@ const WindowArea: React.FC = () => {
           }
 
           e.preventDefault();
-          e.stopPropagation();
           return;
         }
       }}

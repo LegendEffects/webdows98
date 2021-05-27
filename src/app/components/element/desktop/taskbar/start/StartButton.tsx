@@ -23,10 +23,29 @@ const StartBtn = styled.button`
 `;
 
 const StartButton: React.FC = () => {
+  const startBtnContainer = React.useRef<HTMLDivElement>(null);
   const [ isOpen, setIsOpen ] = React.useState(false);
 
+  // Close the start menu if it's unfocused.
+  React.useEffect(() => {
+    const onMouseDownEvent = (e: MouseEvent) => {
+      // Ignore if it was a mouse down within the start menu
+      if(e.target && startBtnContainer.current?.contains(e.target as Node)) {
+        return;
+      }
+
+      setIsOpen(false);
+    }
+
+    window.addEventListener('mousedown', onMouseDownEvent);
+
+    return () => {
+      window.removeEventListener('mousedown', onMouseDownEvent);
+    }
+  }, [ ]);
+
   return (
-    <StartBtnContainer>
+    <StartBtnContainer ref={startBtnContainer}>
       <StartBtn className={isOpen ? 'active' : undefined} onClick={() => {setIsOpen(!isOpen)}} />
 
       {isOpen && (
