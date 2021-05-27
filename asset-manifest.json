@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/webdows98/static/css/main.0a430317.chunk.css",
-    "main.js": "/webdows98/static/js/main.ca6a85d5.chunk.js",
-    "main.js.map": "/webdows98/static/js/main.ca6a85d5.chunk.js.map",
+    "main.js": "/webdows98/static/js/main.e536c44f.chunk.js",
+    "main.js.map": "/webdows98/static/js/main.e536c44f.chunk.js.map",
     "runtime-main.js": "/webdows98/static/js/runtime-main.c076cd57.js",
     "runtime-main.js.map": "/webdows98/static/js/runtime-main.c076cd57.js.map",
     "static/css/2.600779d4.chunk.css": "/webdows98/static/css/2.600779d4.chunk.css",
@@ -26,6 +26,6 @@
     "static/css/2.600779d4.chunk.css",
     "static/js/2.232e0d9b.chunk.js",
     "static/css/main.0a430317.chunk.css",
-    "static/js/main.ca6a85d5.chunk.js"
+    "static/js/main.e536c44f.chunk.js"
   ]
 }
