@@ -2,11 +2,14 @@ import React from "react";
 import IUser from "../interfaces/IUser";
 
 export interface IUserState {
+  volume: number;
+
   authenticated: boolean;
   user: IUser | null;
 }
 
 type UserAction =
+  | { type: 'SET_VOLUME', value: number     }
   | { type: 'SET_USER', value: IUser | null }
   | { type: 'LOGOUT'                        }
   ;
@@ -18,6 +21,11 @@ export const UserContext = React.createContext<[
 
 function userReducer(state: IUserState, action: UserAction): IUserState {
   switch(action.type) {
+    case 'SET_VOLUME':
+      return {
+        ...state,
+        volume: action.value,
+      };
     case 'SET_USER':
       return {
         ...state,
@@ -29,7 +37,7 @@ function userReducer(state: IUserState, action: UserAction): IUserState {
         ...state,
         authenticated: false,
         user: null
-      }
+      };
     default:
       return state;
   }
@@ -37,8 +45,9 @@ function userReducer(state: IUserState, action: UserAction): IUserState {
 
 export const UserProvider: React.FC = ({ children }) => {
   const value = React.useReducer(userReducer, {
+    volume: .1,
     authenticated: false,
-    user: null
+    user: null,
   });
 
   return (

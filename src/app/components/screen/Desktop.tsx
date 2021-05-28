@@ -8,10 +8,12 @@ import Taskbar from "../element/desktop/taskbar/Taskbar";
 import WindowArea from "../element/desktop/WindowArea";
 import startupSound from "../../../assets/sound/98/startup.mp3";
 import useSound from "use-sound";
+import { useUser } from "../../contexts/UserContext";
 
 const DesktopInner: React.FC = () => {
+  const [{ volume }] = useUser();
   const [ , dispatch ] = useSystem();
-  const [ playStartup ] = useSound(startupSound);
+  const [ playStartup ] = useSound(startupSound, { volume });
   
   useEffect(() => {
     dispatch({

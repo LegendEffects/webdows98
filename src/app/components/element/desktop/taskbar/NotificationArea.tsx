@@ -1,10 +1,11 @@
 import TaskbarClock from "./TaskbarClock";
 import { InsetPanel } from "./Taskbar";
+import VolumeIcon from "./volume/VolumeIcon";
 
 const NotificationArea: React.FC = () => {
   return (
     <InsetPanel style={{marginLeft: 'auto'}}>
-      <div className="icon-loudspeaker_rays_16" />
+      <VolumeIcon />
       <div style={{marginLeft: '6px', marginRight: '6px'}}>
         <TaskbarClock />
       </div>
