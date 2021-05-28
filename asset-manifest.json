@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/webdows98/static/css/main.0a430317.chunk.css",
-    "main.js": "/webdows98/static/js/main.7db18352.chunk.js",
-    "main.js.map": "/webdows98/static/js/main.7db18352.chunk.js.map",
+    "main.css": "/webdows98/static/css/main.6d8d9c77.chunk.css",
+    "main.js": "/webdows98/static/js/main.ca659d32.chunk.js",
+    "main.js.map": "/webdows98/static/js/main.ca659d32.chunk.js.map",
     "runtime-main.js": "/webdows98/static/js/runtime-main.c076cd57.js",
     "runtime-main.js.map": "/webdows98/static/js/runtime-main.c076cd57.js.map",
     "static/css/2.600779d4.chunk.css": "/webdows98/static/css/2.600779d4.chunk.css",
@@ -14,7 +14,7 @@
     "static/js/4.9daee4a2.chunk.js.map": "/webdows98/static/js/4.9daee4a2.chunk.js.map",
     "index.html": "/webdows98/index.html",
     "static/css/2.600779d4.chunk.css.map": "/webdows98/static/css/2.600779d4.chunk.css.map",
-    "static/css/main.0a430317.chunk.css.map": "/webdows98/static/css/main.0a430317.chunk.css.map",
+    "static/css/main.6d8d9c77.chunk.css.map": "/webdows98/static/css/main.6d8d9c77.chunk.css.map",
     "static/js/2.232e0d9b.chunk.js.LICENSE.txt": "/webdows98/static/js/2.232e0d9b.chunk.js.LICENSE.txt",
     "static/js/3.c86ead44.chunk.js.LICENSE.txt": "/webdows98/static/js/3.c86ead44.chunk.js.LICENSE.txt",
     "static/media/index.css": "/webdows98/static/media/MS-Sans-17.2e3c9895.woff",
@@ -26,7 +26,7 @@
     "static/js/runtime-main.c076cd57.js",
     "static/css/2.600779d4.chunk.css",
     "static/js/2.232e0d9b.chunk.js",
-    "static/css/main.0a430317.chunk.css",
-    "static/js/main.7db18352.chunk.js"
+    "static/css/main.6d8d9c77.chunk.css",
+    "static/js/main.ca659d32.chunk.js"
   ]
 }
